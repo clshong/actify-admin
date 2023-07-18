@@ -14,7 +14,8 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
-        '@': resolve(__dirname, './src')
+        '@': resolve(__dirname, './src'),
+        '#': resolve(__dirname, './type')
       }
     },
     server: {
@@ -33,8 +34,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       /** 接口代理 */
       proxy: {
         '/api/v1': {
-          target:
-            'https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212/api/v1',
+          target: '/api',
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,

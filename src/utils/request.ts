@@ -13,7 +13,7 @@ const CancelToken = axios.CancelToken
 const source = CancelToken.source()
 
 // 请求配置
-const request = axios.create({
+const instance = axios.create({
   baseURL: process.env.NODE_ENV !== 'development' ? prefixUrl : '/api',
   timeout: 180 * 1000
 })
@@ -33,7 +33,7 @@ const handleError = (error: string, content?: string) => {
 }
 
 // 请求拦截
-request.interceptors.request.use(
+instance.interceptors.request.use(
   (config) => {
     const [getToken] = useToken()
     const token = getToken() || ''
@@ -63,7 +63,7 @@ request.interceptors.request.use(
 )
 
 // 响应拦截
-request.interceptors.response.use(
+instance.interceptors.response.use(
   (response) => {
     const res = response.data
     // 请求返回后，将请求标记从requestList中移除
@@ -98,7 +98,7 @@ request.interceptors.response.use(
       return Promise.reject(res)
     }
 
-    return Promise.resolve(res)
+    return Promise.resolve(res) as any
   },
   (error) => {
     //置空请求列表
@@ -108,4 +108,41 @@ request.interceptors.response.use(
   }
 )
 
-export { request }
+// /* 统一封装get请求 */
+// export const get = (url: any, params: object, config = {}) => {
+//   return new Promise((resolve, reject) => {
+//     instance({
+//       method: 'get',
+//       url,
+//       params,
+//       ...config
+//     })
+//       .then((response) => {
+//         resolve(response)
+//         return response
+//       })
+//       .catch((error) => {
+//         reject(error)
+//       })
+//   })
+// }
+
+// /* 统一封装post请求  */
+// export const post = (url: string, data: object, config = {}) => {
+//   return new Promise((resolve, reject) => {
+//     instance({
+//       method: 'post',
+//       url,
+//       data,
+//       ...config
+//     })
+//       .then((response) => {
+//         resolve(response)
+//       })
+//       .catch((error) => {
+//         reject(error)
+//       })
+//   })
+// }
+
+export { instance }

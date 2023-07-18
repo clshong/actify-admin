@@ -7,6 +7,8 @@ import store from './store'
 import 'normalize.css'
 import 'uno.css'
 
+import '../mock'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <App />
