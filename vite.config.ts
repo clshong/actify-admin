@@ -1,45 +1,72 @@
-import { defineConfig, loadEnv } from 'vite'
-import { handleEnv } from './build/utils/helper'
-import { createProxy } from './build/vite/proxy'
-import { createVitePlugins } from './build/plugins'
-import { buildOptions } from './build/vite/build'
+import { loadEnv } from 'vite'
+import type { ConfigEnv, UserConfigExport } from 'vite'
+import path, { resolve } from 'path'
+import react from '@vitejs/plugin-react'
+import UnoCSS from 'unocss/vite'
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const root = process.cwd()
-  const env = loadEnv(mode, root)
-  const viteEnv = handleEnv(env)
-  const { VITE_SERVER_PORT, VITE_PROXY } = viteEnv
-
+/** 配置项文档：https://cn.vitejs.dev/config */
+export default (configEnv: ConfigEnv): UserConfigExport => {
+  const viteEnv = loadEnv(configEnv.mode, process.cwd())
+  const { VITE_PUBLIC_PATH } = viteEnv
   return {
-    plugins: createVitePlugins(),
+    /** 打包时根据实际情况修改 base */
+    base: VITE_PUBLIC_PATH,
     resolve: {
       alias: {
-        '@': '/src',
-        '#': '/types'
+        /** @ 符号指向 src 目录 */
+        '@': resolve(__dirname, './src')
       }
     },
-    css: {
-      preprocessorOptions: {
-        less: {
-          javascriptEnabled: true,
-          charset: false
+    server: {
+      /** 是否开启 HTTPS */
+      https: false,
+      /** 设置 host: true 才可以使用 Network 的形式，以 IP 访问项目 */
+      host: true, // host: "0.0.0.0"
+      /** 端口号 */
+      port: 7777,
+      /** 是否自动打开浏览器 */
+      open: false,
+      /** 跨域设置允许 */
+      cors: true,
+      /** 端口被占用时，是否直接退出 */
+      strictPort: false,
+      /** 接口代理 */
+      proxy: {
+        '/api/v1': {
+          target:
+            'https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212/api/v1',
+          ws: true,
+          /** 是否允许跨域 */
+          changeOrigin: true,
+          rewrite: (path) => path.replace('/api/v1', '')
         }
       }
     },
-
-    server: {
-      // 是否自动打开
-      open: false,
-      host: true,
-      port: VITE_SERVER_PORT,
-      // 跨域处理
-      proxy: createProxy(VITE_PROXY)
+    build: {
+      /** 消除打包大小超过 500kb 警告 */
+      chunkSizeWarningLimit: 2000,
+      /** Vite 2.6.x 以上需要配置 minify: "terser", terserOptions 才能生效 */
+      minify: 'terser',
+      /** 在打包代码时移除 console.log、debugger 和 注释 */
+      terserOptions: {
+        compress: {
+          drop_console: false,
+          drop_debugger: true,
+          pure_funcs: ['console.log']
+        },
+        format: {
+          /** 删除注释 */
+          comments: false
+        }
+      },
+      /** 打包后静态资源目录 */
+      assetsDir: 'static'
     },
-    // 去除console和debugger
-    esbuild: {
-      pure: ['console.log', 'console.warn', 'console.error', 'debugger']
-    },
-    build: buildOptions()
+    /** Vite 插件 */
+    plugins: [
+      react(),
+      /** UnoCSS */
+      UnoCSS()
+    ]
   }
-})
+}
