@@ -10,7 +10,7 @@ const App: FC = () => {
   const [name, setName] = useState('')
   const user = useAppSelector((state) => state.user.count)
   const dispatch = useAppDispatch()
-  const { loading, executeRequest } = useRequestLoading()
+  const [loading, executeRequest] = useRequestLoading()
 
   const handlerData = () => {
     executeRequest(async () => {

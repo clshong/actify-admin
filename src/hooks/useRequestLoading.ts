@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 export const useRequestLoading = () => {
+  // 定义loading数据
   const [loading, setLoading] = useState(false)
 
   const executeRequest = async (promiseFn: any) => {
@@ -9,8 +10,5 @@ export const useRequestLoading = () => {
     setLoading(false)
   }
 
-  return {
-    loading,
-    executeRequest
-  }
+  return [loading, executeRequest] as const
 }
