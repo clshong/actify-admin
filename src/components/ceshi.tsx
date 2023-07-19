@@ -6,9 +6,6 @@ import { changeCount } from '@/store/modules/user'
 import { getDataTrends } from '@/service/login'
 import { useRequestLoading } from '@/hooks/useRequestLoading'
 
-
-
-
 const App: FC = () => {
   const [name, setName] = useState('')
   const user = useAppSelector((state) => state.user.count)
@@ -18,7 +15,7 @@ const App: FC = () => {
   const handlerData = () => {
     executeRequest(async () => {
       const res = await getDataTrends({})
-      console.log(res);
+      console.log(res)
       setName(res.data.nickname)
     })
   }
@@ -26,7 +23,6 @@ const App: FC = () => {
   useEffect(() => {
     handlerData()
   }, [])
-
 
   return (
     <div className="flex flex-col justify-center align-center h-72 items-center m-10">

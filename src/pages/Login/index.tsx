@@ -1,19 +1,19 @@
-import React from 'react';
-import { Button, Form, Input } from 'antd';
+import React from 'react'
+import { Button, Form, Input } from 'antd'
 import '@/styles/login.less'
 
 const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
+  console.log('Success:', values)
+}
 
 const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
+  console.log('Failed:', errorInfo)
+}
 
 const App: React.FC = () => {
   return (
-    <div className='login flex flex-col justify-center items-center'>
-      <h2 className='w-xl  text-center m-b10 p-l40'>actify-admin</h2>
+    <div className="login flex flex-col justify-center items-center">
+      <h2 className="w-xl  text-center m-b10 p-l40">actify-admin</h2>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -29,7 +29,7 @@ const App: React.FC = () => {
           name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Input className='w-xs' placeholder='admin' />
+          <Input className="w-xs" placeholder="admin" />
         </Form.Item>
 
         <Form.Item
@@ -37,11 +37,11 @@ const App: React.FC = () => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password className='w-xs' placeholder='123456' />
+          <Input.Password className="w-xs" placeholder="123456" />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit" className='w-xs'>
+          <Button type="primary" htmlType="submit" className="w-xs">
             Submit
           </Button>
         </Form.Item>
@@ -50,5 +50,4 @@ const App: React.FC = () => {
   )
 }
 
-
-export default App;
+export default App
