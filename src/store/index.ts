@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import user from './modules/user'
+import publicReducer from './modules/public'
+import menuReducer from './modules/menu'
+import tabsReducer from './modules/tabs'
+import userReducer from './modules/user'
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    user
+    public: publicReducer,
+    menu: menuReducer,
+    tabs: tabsReducer,
+    user: userReducer
   }
 })
 
@@ -13,5 +19,3 @@ const store = configureStore({
 // Dispatch 类型 const dispatch = useDispatch()
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
-
-export default store

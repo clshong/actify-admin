@@ -1,22 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
-interface IAppState {
-  count: number
-}
-// const initialState: IAppState = {
-//   collapsed: false
-// }
-const initialState = {
-  count: 0
-} as IAppState
 
-export const appSlice = createSlice({
-  name: 'app',
-  initialState,
+export const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    // 用户权限
+    permissions: [],
+    // 用户信息
+    userInfo: {
+      id: 0,
+      username: '',
+      email: '',
+      phone: ''
+    }
+  },
   reducers: {
-    changeCount(state) {
-      state.count = state.count + 1
+    /** 设置用户信息 */
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload
+    },
+    /** 设置权限 */
+    setPermissions: (state, action) => {
+      state.permissions = action.payload
+    },
+    /** 清除用户信息 */
+    clearInfo: (state) => {
+      state.userInfo = {
+        id: 0,
+        username: '',
+        email: '',
+        phone: ''
+      }
     }
   }
 })
-export const { changeCount } = appSlice.actions
-export default appSlice.reducer
+
+export const { setUserInfo, setPermissions, clearInfo } = userSlice.actions
+
+export default userSlice.reducer

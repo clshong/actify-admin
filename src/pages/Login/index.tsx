@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, Input } from 'antd'
-import '@/styles/login.less'
+import './login.less'
 
 const onFinish = (values: any) => {
   console.log('Success:', values)
