@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prettier": "prettier --write .",
     "prepare": "husky install",
-    "commit": "commitlint --config commitlint.config.cjs -e -V"
+    "commit": "commitlint --config commitlint.config.cjs -e -V",
+    "lint:stylelint": "stylelint --cache --fix \"**/*.{jsx,tsx,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
   },
   "dependencies": {
     "@loadable/component": "^5.15.3",
@@ -24,6 +25,8 @@
     "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-activation": "^0.12.4",
@@ -52,6 +55,12 @@
     "eslint-plugin-react-refresh": "^0.4.1",
     "husky": "^8.0.0",
     "prettier": "^3.0.0",
+    "stylelint": "^15.10.2",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recommended-less": "^1.0.4",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-less": "^1.0.8",
+    "stylelint-order": "^6.0.3",
     "typescript": "^4.9.3",
     "unocss": "^0.53.5",
     "vite": "^4.3.9"
