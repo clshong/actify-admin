@@ -1,7 +1,7 @@
-import type { SideMenu } from '#/public';
-import { system } from './system';
-import { demo } from './demo';
-import { content } from './content';
+import type { SideMenu } from '#/public'
+import { system } from './system'
+import { demo } from './demo'
+import { content } from './content'
 
 export const defaultMenus: SideMenu[] = [
   {
@@ -12,11 +12,11 @@ export const defaultMenus: SideMenu[] = [
       {
         label: '数据总览',
         key: '/dashboard',
-        rule: '/dashboard',
+        rule: '/dashboard'
       }
     ]
   },
-  ...demo as SideMenu[],
-  ...system as SideMenu[],
-  ...content as SideMenu[],
-];
+  ...(demo as SideMenu[]),
+  ...(system as SideMenu[]),
+  ...(content as SideMenu[])
+]

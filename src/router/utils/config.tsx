@@ -9,4 +9,4 @@ export const ROUTER_EXCLUDE = [
   '__test__',
   'model.tsx',
   '[...all].tsx'
-];
+]

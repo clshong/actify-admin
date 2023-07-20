@@ -1,4 +1,4 @@
-import type { SideMenu } from '#/public';
+import type { SideMenu } from '#/public'
 
 export const content: SideMenu[] = [
   {
@@ -9,8 +9,8 @@ export const content: SideMenu[] = [
       {
         label: '文章管理',
         key: '/content/article',
-        rule: '/content/article',
-      },
+        rule: '/content/article'
+      }
     ]
   }
-];
+]

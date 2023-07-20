@@ -1,4 +1,4 @@
-import type { SideMenu } from '#/public';
+import type { SideMenu } from '#/public'
 
 export const demo: SideMenu[] = [
   {
@@ -9,22 +9,22 @@ export const demo: SideMenu[] = [
       {
         label: '剪切板',
         key: '/demo/copy',
-        rule: '/demo/copy',
+        rule: '/demo/copy'
       },
       {
         label: '水印',
         key: '/demo/watermark',
-        rule: '/demo/watermark',
+        rule: '/demo/watermark'
       },
       {
         label: '虚拟滚动',
         key: '/demo/virtualScroll',
-        rule: '/demo/virtualScroll',
+        rule: '/demo/virtualScroll'
       },
       {
         label: '富文本',
         key: '/demo/editor',
-        rule: '/demo/editor',
+        rule: '/demo/editor'
       },
       {
         label: '层级1',
@@ -37,12 +37,12 @@ export const demo: SideMenu[] = [
               {
                 label: '层级3',
                 key: '/demo/level1/level2/level3',
-                rule: '/demo/watermark',
+                rule: '/demo/watermark'
               }
             ]
           }
         ]
-      },
+      }
     ]
   }
-];
+]

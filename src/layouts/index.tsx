@@ -1,7 +1,3 @@
 export default function layouts() {
-  return (
-    <>
-      helloworld
-    </>
-  )
+  return <>helloworld</>
 }

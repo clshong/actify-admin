@@ -1,12 +1,7 @@
 {
   "root": true,
-  "plugins": [
-    "stylelint-order"
-  ],
-  "extends": [
-    "stylelint-config-standard",
-    "stylelint-config-prettier"
-  ],
+  "plugins": ["stylelint-order"],
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
   "customSyntax": "postcss-html",
   "rules": {
     "function-no-unknown": null,
@@ -14,17 +9,13 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": [
-          "global"
-        ]
+        "ignorePseudoClasses": ["global"]
       }
     ],
     "selector-pseudo-element-no-unknown": [
       true,
       {
-        "ignorePseudoElements": [
-          "v-deep"
-        ]
+        "ignorePseudoElements": ["v-deep"]
       }
     ],
     "at-rule-no-unknown": [
@@ -55,18 +46,13 @@
     "rule-empty-line-before": [
       "always",
       {
-        "ignore": [
-          "after-comment",
-          "first-nested"
-        ]
+        "ignore": ["after-comment", "first-nested"]
       }
     ],
     "unit-no-unknown": [
       true,
       {
-        "ignoreUnits": [
-          "rpx"
-        ]
+        "ignoreUnits": ["rpx"]
       }
     ],
     "order/order": [
@@ -90,39 +76,23 @@
       }
     ]
   },
-  "ignoreFiles": [
-    "**/*.js",
-    "**/*.ts"
-  ],
+  "ignoreFiles": ["**/*.js", "**/*.ts"],
   "overrides": [
     {
-      "files": [
-        "*.tsx",
-        "**/*.tsx",
-        "*.html",
-        "**/*.html"
-      ],
-      "extends": [
-        "stylelint-config-recommended"
-      ],
+      "files": ["*.tsx", "**/*.tsx", "*.html", "**/*.html"],
+      "extends": ["stylelint-config-recommended"],
       "rules": {
         "keyframes-name-pattern": null,
         "selector-pseudo-class-no-unknown": [
           true,
           {
-            "ignorePseudoClasses": [
-              "deep",
-              "global"
-            ]
+            "ignorePseudoClasses": ["deep", "global"]
           }
         ]
       }
     },
     {
-      "files": [
-        "*.less",
-        "**/*.less"
-      ],
+      "files": ["*.less", "**/*.less"],
       "customSyntax": "postcss-less",
       "extends": [
         "stylelint-config-standard",

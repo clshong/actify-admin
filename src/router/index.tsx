@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { App } from "antd";
+import { useEffect } from 'react'
+import { App } from 'antd'
 
 import { HashRouter as Router } from 'react-router-dom'
 
@@ -8,17 +8,16 @@ import nprogress from 'nprogress'
 import AppPage from './App'
 
 // antd
-import { theme, ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
+import { theme, ConfigProvider } from 'antd'
+import zhCN from 'antd/es/locale/zh_CN'
 
 // antd主题
-const { defaultAlgorithm, darkAlgorithm } = theme;
+const { defaultAlgorithm, darkAlgorithm } = theme
 
 import { useCommonStore } from '@/hooks/useCommonStore'
 
 // keepalive
 import { AliveScope } from 'react-activation'
-
 
 function page() {
   const { theme } = useCommonStore()
@@ -36,24 +35,22 @@ function page() {
     return () => {
       nprogress.start()
     }
-
   }, [])
 
   return (
     <Router>
       <ConfigProvider
         locale={zhCN}
-        theme={
-          { algorithm: [theme === 'dark' ? darkAlgorithm : defaultAlgorithm] }
-        }
+        theme={{
+          algorithm: [theme === 'dark' ? darkAlgorithm : defaultAlgorithm]
+        }}
       >
-        <App >
+        <App>
           <AliveScope>
             <AppPage />
           </AliveScope>
         </App>
       </ConfigProvider>
-
     </Router>
   )
 }
